@@ -73,7 +73,7 @@ export default function Converter() {
       await ffmpeg.exec(['-i', inputName, outputName]);
       
       const data = await ffmpeg.readFile(outputName);
-      const url = URL.createObjectURL(new Blob([data], { type: `${getActionFromExtension(fileState.targetFormat)}/${fileState.targetFormat}` }));
+      const url = URL.createObjectURL(new Blob([(data as any)], { type: `${getActionFromExtension(fileState.targetFormat)}/${fileState.targetFormat}` }));
 
       setFiles(prev => prev.map(f => f.id === fileState.id ? { 
         ...f, 
